@@ -1,0 +1,73 @@
+
+.main {
+	background: rgb(85%, 85%, 86%);
+	margin-bottom: 20px;
+	padding-top: 20px;
+	font-size: 20px;
+	.display {
+		outline: 1px solid black;
+		font-size: 24px;
+		height: 400px;
+		overflow: auto;
+		text-align: right;
+		vertical-align: bottom;
+		background: linear-gradient(to bottom, rgb(90%, 90%, 90%), rgb(80%, 80%, 80%));
+		margin-bottom: 20px;
+		p {
+			height: 30px;
+			margin-bottom: 5px;
+		}
+		.display-line-action {
+			background: rgb(95%, 95%, 96%);
+		}
+		.display-line-answer {
+			background: rgb(85%, 85%, 96%);
+		}
+	}
+	
+	.numbers {
+		margin-left: 5%;
+		.number {
+			margin: 0 5px 5px 5px;
+			border-radius: 10px;	
+			cursor: pointer;
+			transition: .3s;
+			&:hover {
+				background-color: rgb(75%, 80%, 70%);
+			}		
+		}
+	}
+	.actions {
+		.action {
+			margin-bottom: 5px;
+			border-radius: 10px;	
+			transition: .3s;
+			cursor: pointer;
+			&:hover {
+				background-color: rgb(70%, 75%, 80%);
+			}
+		}
+	}
+	.super-actions {
+		margin-bottom: 20px;
+		transition: .3s;
+		.super-action-clear {
+			cursor: pointer;
+			background: white;
+			border-radius: 15px;	
+			margin-right: 5%;
+			&:hover {
+				background-color: rgb(80%, 75%, 70%);
+			}
+		}
+		.super-action-equal {
+			cursor: pointer;
+			background: white;
+			border-radius: 15px;	
+			margin-right: 5%;
+			&:hover {
+				background-color: rgb(80%, 75%, 70%);
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+
+
+.header {
+	background: linear-gradient(to right, rgb(67%, 77%, 80%), rgb(94%, 97%, 100%));
+	text-align: right;
+	transition: .3s;
+	.header__title {
+		font-family: Roboto;
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	.header__tumbler {
+		font-size: 22px;
+		button {			
+			cursor: pointer;
+			border-radius: 10px;
+			margin: 5px;
+		}
+	}
+}

@@ -1,0 +1,48 @@
+@import 'components/header';
+@import 'components/main';
+@import 'components/footer';
+@import 'components/bootstrap.css';
+
+.wrapper {
+	transition: .8s;
+}
+
+.theme-dark {
+	background: rgb(11%, 11%, 16%);
+	header.header {
+		background: linear-gradient(to right, rgb(7%, 7%, 9%), rgb(17%, 17%, 10%));
+		color: silver;	
+		.header__tumbler {
+			button {
+				background: rgb(5%, 5%, 9%);
+				color: silver;
+			}
+		}	
+	}	
+	.main {
+		background: rgb(26%, 25%, 26%);		
+		.display {
+			background: linear-gradient(to bottom, rgb(7%, 7%, 9%), rgb(17%, 17%, 10%));		
+			color: silver;
+			.display-line-action {
+				background: rgb(15%, 5%, 16%);
+			}
+			.display-line-answer {
+				background: rgb(5%, 15%, 16%);
+			}	
+		}
+		.buttons {		
+			.number, .action, .super-action-clear, .super-action-equal {			
+				background: rgb(20%, 20%, 20%);	
+				color: silver;
+			}
+			.number:hover, .action:hover, .super-action-clear:hover, .super-action-equal:hover {			
+				background: rgb(28%, 28%, 36%);	
+			}
+		}
+	}
+	.footer {
+		background: rgb(18%, 18%, 23%);	
+		color: silver;
+	}
+}
