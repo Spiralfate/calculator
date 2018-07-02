@@ -34,8 +34,7 @@ const mathParser = (accumulator, last_action, last_input) => {
 }
 
 const equalButton = () => {
-	const odd = display.childElementCount % 2 === 0,	
-		  last_number = display.lastChild.innerHTML ? display.lastChild.innerHTML.trim() : '';
+	const last_number = display.lastChild.innerHTML ? display.lastChild.innerHTML.trim() : '';
 	let last_line = display.lastChild;
 	if (last_line.innerHTML.trim().match(/\=/)) return;
 	
@@ -78,7 +77,6 @@ Array.from(numbers).forEach((numberButton, index) => {
 	const number = numberButton.innerHTML,
 		numberFunction = () => {
 			let last_line = display.lastChild;
-			const odd     = display.childElementCount % 2 === 0;
 
 			if (last_line.nodeType != 1 || last_line.innerHTML.match(/[^0-9.]/)) {
 				if (last_line.innerHTML && last_line.innerHTML.match(/[\*\-\+\/]/)) {				
@@ -98,12 +96,6 @@ Array.from(numbers).forEach((numberButton, index) => {
 	
 	numberButton.addEventListener('click', e => {
 		numberFunction();
-	})
-	
-	document.querySelector('.main').addEventListener('keydown', e => {
-		if (e.key === `Digit${number}`) {
-			numberFunction();
-		}						
 	})	
 })
 
