@@ -48,8 +48,6 @@ const equalButton = () => {
 	
 	last_line.innerHTML = isNaN(expression_accumulator) ? 'Your expression wasn\'t correct' : `=${expression_accumulator}`;	
 	display.appendChild(last_line);
-	expression_accumulator = '';
-	last_input = '';
 }
 
 const clearDisplay = () => {
@@ -63,7 +61,7 @@ const clearDisplay = () => {
 
 const toggleTheme = e => {
 	let text = e.target.innerHTML; 
-	let new_text = text.slice(24).match(/default/) ? 'dark' : 'default';
+	let new_text = text.slice(24).match(/light/) ? 'dark' : 'light';
 	e.target.innerHTML = text.slice(0, 24) + new_text;
 	if (new_text === 'dark')
 		document.querySelector('.wrapper').classList.add('theme-dark');
@@ -107,7 +105,7 @@ Array.from(actions).forEach((actionButton, index) => {
 			const odd    = display.childElementCount % 2 === 0;
 				  
 			let last_line = display.lastChild;	
-			if (last_line.innerHTML && last_line.innerHTML.match(/[\*\-\+\/]/)) {
+			if (last_line.innerHTML && last_line.innerHTML.match(/[\*\-\+\/\=]/)) {
 				last_line.innerHTML = action;
 				last_action = action;
 				return;

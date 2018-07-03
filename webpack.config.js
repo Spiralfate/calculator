@@ -9,45 +9,45 @@ module.exports = {
 	path: path.resolve(__dirname, 'dist'),
 	filename: 'main.js'
 	},
-module: {
-	rules: [
-	  {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-	  {
-		test: /\.html$/,
-		use: [
+	module: {
+		rules: [
 		  {
-			loader: "html-loader"
-		  }
-		]
-	  },
-		{
-            test: /\.(s)?css$/,
-            use: [{
-                loader: "style-loader"
-            }, {
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader"
-            }]
-        },
-	  {
-		test: /\.(woff|woff2|ttf|png|jpg|gif)$/,
-		use: [
-		  {
-			loader: 'file-loader',
-			options: {
+			test: /\.js$/,
+			exclude: /node_modules/,
+			use: {
+			  loader: "babel-loader"
 			}
+		  },
+		  {
+			test: /\.html$/,
+			use: [
+			  {
+				loader: "html-loader"
+			  }
+			]
+		  },
+		  {
+		  	test: /\.(s)?css$/,
+			use: [{
+				loader: "style-loader"
+			}, {
+				loader: "css-loader"
+			}, {
+				loader: "sass-loader"
+			}]
+		  },
+		  {
+			test: /\.(woff|woff2|ttf|png|jpg|gif)$/,
+			use: [
+			  {
+				loader: 'file-loader',
+				options: {
+				}
+			  }
+			]
 		  }
-		]
-	  }
-	]
-  },
+	   ]
+   },
    plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
