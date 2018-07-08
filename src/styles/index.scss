@@ -29,16 +29,16 @@
 			.display-line-action {
 				background: rgb(15%, 5%, 16%);
 			}
-			.display-line-answer {
+			.accumulator {
 				background: rgb(5%, 15%, 16%);
 			}	
 		}
 		.buttons {		
-			.number, .action, .super-action-clear, .super-action-equal {			
+			.number, .action, .action-special-unary, .action-special, .super-action-clear, .super-action-equal, .super-action-toggle {			
 				background: rgb(20%, 20%, 20%);	
 				color: silver;
 			}
-			.number:hover, .action:hover, .super-action-clear:hover, .super-action-equal:hover {			
+			.number:hover, .action:hover, .super-action-clear:hover, .super-action-equal:hover, .action-special-unary:hover, .action-special:hover{			
 				background: rgb(28%, 28%, 36%);	
 			}
 		}
@@ -48,3 +48,5 @@
 		color: silver;
 	}
 }
+
+

@@ -16,18 +16,30 @@
 		p {
 			height: 30px;
 			margin-bottom: 5px;
+			margin-left: 5px;
+			display: inline;
 		}
 		.display-line-action {
 			background: rgb(95%, 95%, 96%);
 		}
-		.display-line-answer {
+		.accumulator {
+			display: block;
 			background: rgb(85%, 85%, 96%);
 		}
 	}
 	
 	.numbers {
-		margin-left: 5%;
+		margin-left: 6%;
 		.number {
+			margin: 0 5px 5px 5px;
+			border-radius: 10px;	
+			cursor: pointer;
+			transition: .3s;
+			&:hover {
+				background-color: rgb(75%, 80%, 70%);
+			}		
+		}
+		.action-special-unary {
 			margin: 0 5px 5px 5px;
 			border-radius: 10px;	
 			cursor: pointer;
@@ -38,6 +50,7 @@
 		}
 	}
 	.actions {
+		transition: .8s;
 		.action {
 			margin-bottom: 5px;
 			border-radius: 10px;	
@@ -48,6 +61,18 @@
 			}
 		}
 	}
+	.actions-special {
+		.action-special, .action-special-unary {
+			margin-bottom: 5px;
+			border-radius: 10px;	
+			transition: .3s;
+			cursor: pointer;
+			&:hover {
+				background-color: rgb(70%, 75%, 80%);
+			}
+		}
+	}
+	
 	.super-actions {
 		margin-bottom: 20px;
 		transition: .3s;
@@ -69,5 +94,29 @@
 				background-color: rgb(80%, 75%, 70%);
 			}
 		}
+		.super-action-toggle {			
+			cursor: pointer;
+			background: white;
+			border-radius: 15px;	
+			margin-right: 5%;
+			&:hover {
+				background-color: rgb(80%, 75%, 70%);
+			}
+		}
+		.super-action-pop {			
+			cursor: pointer;
+			background: white;
+			border-radius: 15px;	
+			margin-right: 5%;
+			&:hover {
+				background-color: rgb(80%, 75%, 70%);
+			}
+		}
 	}
+}
+
+.hidden {	
+	visibility: hidden;
+	display: none;
+	position: absolute;
 }
