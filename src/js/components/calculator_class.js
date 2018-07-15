@@ -1,4 +1,5 @@
 import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from './math_parsing.js';
+
 export class Calculator {
 	constructor(accumulator = '') {
 		this.operations = [];
@@ -35,8 +36,9 @@ export class Calculator {
 	}
 	
 	pop () {	
-		let subject = this.operand ? this.operand : this.accumulator;
-		subject = (subject).slice(0, subject.length - 1);
+		let subject;
+		this.operand ? subject = String(this.operand) : subject = String(this.accumulator);
+		subject = subject.slice(0, subject.length - 1);
 		this.operand ? this.operand = subject : this.accumulator = subject;
 	}
 	

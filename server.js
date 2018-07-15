@@ -1,6 +1,6 @@
 var { createServer } = require('http');
 var { Server } = require('node-static');
-var file = new Server('./dist/');
+var file = new Server('./dist/prod/');
 
 var server = createServer((req, res) => {
 	file.serve(req, res);
