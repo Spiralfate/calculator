@@ -38,8 +38,7 @@ export const init_listeners = (calculator, index) => {
 				
 			}
 			else {
-				if (calculator.accumulator) {				
-					debugger;	
+				if (calculator.accumulator) {	
 					calculator.concatAccumulator(number);	
 					calculator.accumulator = dotTerminator(calculator.accumulator);	
 					let last_accumulator = Array.from(document.getElementsByClassName(`accumulator-${index}`)).reverse()[0];
