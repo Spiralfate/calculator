@@ -23,14 +23,6 @@ module.exports = (env, argv) => {
 				}
 			  },
 			  {
-				test: /\.html$/,
-				use: [
-				  {
-					loader: "html-loader"
-				  }
-				]
-			  },
-			  {
 				test: /\.(s)?css$/,
 				use: [{
 					loader: "style-loader"
@@ -55,7 +47,8 @@ module.exports = (env, argv) => {
 	   plugins: [
 		new HtmlWebpackPlugin({
 		  template: "./src/index.html",
-		  filename: `index.html`
+		  filename: `index.html`,
+		  title: argv.mode == 'production' ? 'Production mode' : 'Development mode'
 		}),    
 		new ExtractTextPlugin({filename:'index.css'})
 	  ]
