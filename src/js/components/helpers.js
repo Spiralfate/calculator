@@ -3,8 +3,7 @@ export const dotTerminator = string => {
 	let count = 0;
 	return string.replace(/\./g, match => {
 		count++;
-		return count === 1 ? '.' : ''
-		
+		return count === 1 ? '.' : ''		
 	})
 }
 

@@ -1,7 +1,7 @@
 import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from './math_parsing.js';
 import { Calculator } from './calculator_class.js';
 import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from './helpers.js';
-import { resultButton, clearDisplay, actionFunction, toggleMode } from './listener_functions.js';
+import { resultButton, clearDisplay, actionFunction, toggleMode, numberFunction } from './listener_functions.js';
 
 
 // Initializing listeners function
@@ -20,38 +20,7 @@ export const init_listeners = (calculator, index) => {
 		const number = numberButton.innerHTML.trim();
 		
 		numberButton.addEventListener('click', e => {
-						
-			if (calculator.action) {	
-				if (calculator.operand)	{				
-					calculator.concatOperand(number);		
-					calculator.operand = dotTerminator(calculator.operand);			
-					let last_operand = Array.from(document.getElementsByClassName(`operand-${index}`)).reverse()[0];
-					last_operand.innerHTML = calculator.operand;				
-				}
-				else {
-					let new_operand = nodeWithClasses('p', '', 'operand', `operand-${index}`);
-					calculator.concatOperand(number);			
-					calculator.operand = dotTerminator(calculator.operand);			
-					new_operand.innerHTML = calculator.operand;			
-					display.appendChild(new_operand);						
-				}
-				
-			}
-			else {
-				if (calculator.accumulator) {	
-					calculator.concatAccumulator(number);	
-					calculator.accumulator = dotTerminator(calculator.accumulator);	
-					let last_accumulator = Array.from(document.getElementsByClassName(`accumulator-${index}`)).reverse()[0];
-					last_accumulator.innerHTML = calculator.accumulator;						
-				}
-				else {
-					let new_accumulator = nodeWithClasses('p', '', 'accumulator', `accumulator-${index}`);
-					calculator.concatAccumulator(number);	
-					calculator.accumulator = dotTerminator(calculator.accumulator);	
-					new_accumulator.innerHTML = calculator.accumulator;			
-					display.appendChild(new_accumulator);	
-				}
-			}
+			numberFunction(number, calculator, display, index);
 		})
 	})
 	
@@ -103,10 +72,12 @@ export const init_listeners = (calculator, index) => {
 	// Remove last character button listener
 	document.getElementsByClassName('super-action-pop')[index].addEventListener('click', e => {
 		calculator.pop();
-		calculator.operand ? Array.from(document.getElementsByClassName('operand')).reverse()[0].innerHTML = calculator.operand :
-		Array.from(document.getElementsByClassName('accumulator')).reverse()[0].innerHTML = calculator.accumulator;
+		calculator.operand ? Array.from(document.getElementsByClassName(`operand-${index}`)).reverse()[0].innerHTML = calculator.operand :
+		Array.from(document.getElementsByClassName(`accumulator-${index}`)).reverse()[0].innerHTML = calculator.accumulator;
 	});
 }
+
+
 
 // Rendering calculator function
 export const init_render = index => {	

@@ -1,6 +1,39 @@
 import { Calculator } from './calculator_class.js';  
 import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from './helpers.js';
 
+// Number buttons function
+export const numberFunction = (number, calculator, display, index) => {
+	if (calculator.action) {			
+		if (calculator.operand)	{		
+			calculator.concatOperand(number);			
+			calculator.operand = dotTerminator(calculator.operand);			
+			let last_operand = Array.from(document.getElementsByClassName(`operand-${index}`)).reverse()[0];
+			last_operand.innerHTML = calculator.operand;				
+		}
+		else {
+			calculator.concatOperand(number);			
+			calculator.operand = dotTerminator(calculator.operand);		
+			let new_operand = nodeWithClasses('p', String(calculator.operand), 'operand', `operand-${index}`);	
+			display.appendChild(new_operand);						
+		}		
+	}
+	
+	else {
+		if (calculator.accumulator) {	
+			calculator.concatAccumulator(number);	
+			calculator.accumulator = dotTerminator(calculator.accumulator);	
+			let last_accumulator = Array.from(document.getElementsByClassName(`accumulator-${index}`)).reverse()[0];
+			last_accumulator.innerHTML = calculator.accumulator;						
+		}
+		else {
+			calculator.concatAccumulator(number);	
+			calculator.accumulator = dotTerminator(calculator.accumulator);	
+			let new_accumulator = nodeWithClasses('p', String(calculator.accumulator), 'accumulator', `accumulator-${index}`);
+			display.appendChild(new_accumulator);	
+		}
+	}
+}
+
 // Result button function
 export const resultButton = (calculator, display, index) => {	
 	if (calculator.action && calculator.operand) {		
