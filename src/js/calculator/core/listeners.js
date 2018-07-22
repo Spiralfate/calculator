@@ -1,5 +1,5 @@
-import { Calculator } from './calculator_class.js';  
-import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from './helpers.js';
+import { Calculator } from '../index.js';  
+import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from '../helpers';
 
 // Number buttons function
 export const numberFunction = (number, calculator, display, index) => {
@@ -80,9 +80,12 @@ export const actionFunction = (action, calculator, display, index) => {
 
 
 // Calculator mode toggling button function
-export const toggleMode = (index) => {
-	const actions_left = document.getElementsByClassName('actions')[index];
-	const actions_right = document.getElementsByClassName('actions-special')[index];
+export const toggleMode = (index, e) => {
+	const actions_left = document.getElementsByClassName('actions')[index],
+		actions_right = document.getElementsByClassName('actions-special')[index];
+	
+	
+	e.target.innerHTML.match(/off/) ? e.target.innerHTML = 'ingineer on' : e.target.innerHTML = 'ingineer off'
 
 	if (actions_left.className.match('col-4')) {
 		

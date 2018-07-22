@@ -2,10 +2,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
 const fileLoader = require("file-loader");
-const webpack = require('webpack');
-
-const argv = process.argv;
-const modePath = String(argv).match(/production/) ? 'dist/prod/' : 'dist/dev/';
+const webpack = require('webpack')
+const NODE_ENV = process.env.NODE_ENV || 'development'
+const isDevelopment = NODE_ENV === 'development'
+const modePath = argv.mode == 'production' ? 'dist/prod/' : 'dist/dev/';
 
 const config = Object.assign({})
 
@@ -51,7 +51,7 @@ config.plugins = [
 	new HtmlWebpackPlugin({
 	  template: "./src/index.html",
 	  filename: `index.html`,
-	  title: String(argv).match(/production/) ? 'Production mode' : 'Development mode'
+	  title: NODE_ENV
 	}),    
 	new ExtractTextPlugin({filename:'index.css'})
 ]   

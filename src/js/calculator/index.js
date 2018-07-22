@@ -1,4 +1,4 @@
-import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from './math_parsing.js';
+import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from './core/math_parsing.js';
 
 export class Calculator {
 	constructor(accumulator = '') {
@@ -19,37 +19,43 @@ export class Calculator {
 		]
 	}
 	
+	// Clears operand prop
 	clearOperand () {
 		this.operand = '';
 	}
 	
+	// Clears action prop
 	clearAction () {		
 		this.action = '';
 	}
 	
+	// Clears operations array prop
 	clearOperations () {
 		this.operations = [];
 	}
 	
+	// Adds argument to the operand prop as a string
+	concatAccumulator (add) {
+		this.accumulator = this.accumulator + add;
+	}
+	
+	// Adds argument to the operand prop as a string
 	concatOperand (add) {
 		this.operand = this.operand + add;
 	}
 	
+	// Removes last character from accumulator or operand prop whether the last one has a value
 	pop () {	
 		let subject;
 		this.operand ? subject = String(this.operand) : subject = String(this.accumulator);
 		subject = subject.slice(0, subject.length - 1);
 		this.operand ? this.operand = subject : this.accumulator = subject;
 	}
-	
-	concatAccumulator (add) {
-		this.accumulator = this.accumulator + add;
-	}
-	
 	setAction(action) {
 		this.action = action;
 	}
 	
+	// Makes a change on an operand or an accumulator bypassing the operations array
 	directMutation(action, calculator) {
 		let subject; 		
 		if (this.operand) {
@@ -62,8 +68,9 @@ export class Calculator {
 			let intermidiate_result = mathParser(subject, { action }, unary_math_types, calculator);			
 			this.accumulator = intermidiate_result;
 		}
-	}
+	}	
 	
+	// Recursively writes the operations result to the accumulator prop
 	produceResult() {
 		this.accumulator = this.operations.reduce((result, operation, index, operations) => {
 			return mathParser(result, operation, math_types);

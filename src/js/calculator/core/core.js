@@ -1,11 +1,11 @@
 import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from './math_parsing.js';
-import { Calculator } from './calculator_class.js';
-import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from './helpers.js';
-import { resultButton, clearDisplay, actionFunction, toggleMode, numberFunction } from './listener_functions.js';
+import { Calculator } from '../index.js';
+import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from '../helpers';
+import { resultButton, clearDisplay, actionFunction, toggleMode, numberFunction } from './listeners.js';
 
 
 // Initializing listeners function
-export const init_listeners = (calculator, index) => {
+const init_listeners = (calculator, index) => {
 
 	const display = document.getElementsByClassName('display')[index];
 
@@ -47,9 +47,13 @@ export const init_listeners = (calculator, index) => {
 		const action = actionButton.innerHTML.trim();
 		
 		actionButton.addEventListener('click', e => {
+			const last_operand = Array.from(document.getElementsByClassName(`operand-${index}`)).reverse()[0],
+				  last_accumulator = Array.from(document.getElementsByClassName(`accumulator-${index}`)).reverse()[0];
+				  
 			calculator.directMutation(action, calculator);
-			calculator.operand ? Array.from(document.getElementsByClassName(`operand-${index}`)).reverse()[0].innerHTML = calculator.operand :
-			Array.from(document.getElementsByClassName(`accumulator-${index}`)).reverse()[0].innerHTML = calculator.accumulator;
+			calculator.operand ? 
+			last_operand.innerHTML = `${action}(${last_operand.innerHTML})` :
+			last_accumulator.innerHTML = calculator.accumulator;
 		})
 	})
 	
@@ -66,7 +70,7 @@ export const init_listeners = (calculator, index) => {
 	
 	// Toggle calculator mode button listener
 	document.getElementsByClassName('super-action-toggle')[index].addEventListener('click', e => {
-		toggleMode(index);
+		toggleMode(index, e);
 	})	
 	
 	// Remove last character button listener
@@ -80,11 +84,11 @@ export const init_listeners = (calculator, index) => {
 
 
 // Rendering calculator function
-export const init_render = index => {	
+const init_render = index => {	
 	// Calling math types
-	const regular_actions = math_types.slice(0, 4),
+	const regular_actions = math_types.slice(0, 4).concat(unary_math_types[1]),
 		  special_actions = math_types.slice(4),
-		  special_actions_unary = unary_math_types.slice(0, unary_math_types.length - 1);
+		  special_actions_unary = unary_math_types.slice(0, 1).concat(unary_math_types.slice(2, unary_math_types.length - 1));
 		  
 		  
 	// Initializing the main calculator body 
@@ -97,7 +101,7 @@ export const init_render = index => {
 			nodeWithClasses(elt('div',
 				nodeWithClasses(elt('div',
 					nodeWithClasses('button', '<-', 'super-action-pop', 'col-2'),
-					nodeWithClasses('button', 'toggle calculator', 'super-action-toggle', 'col-2'),
+					nodeWithClasses('button', 'ingineer off', 'super-action-toggle', 'col-2'),
 					nodeWithClasses('button', 'clear', 'super-action-clear', 'col-2'),
 					nodeWithClasses('button', '=', 'super-action-equal', 'col-2'),					
 				), '', 'row', 'justify-content-center')
@@ -146,7 +150,8 @@ export const init_render = index => {
 	
 	// Rendering action buttons
 	regular_actions.forEach(action => {
-		renderAction(action, regular_actions_div, 'col-6', `action-${index}`, 'action');	
+		const className = action.value === '%' ? 'action-special-unary' : 'action';
+		renderAction(action, regular_actions_div, 'col-6', `${className}-${index}`, className);	
 	})
 	
 	special_actions.forEach(action => {
@@ -160,3 +165,30 @@ export const init_render = index => {
 	
 	
 }
+
+export const calculators_init = (qty) => {
+		
+	 const calculators = [];
+
+	// Initializing calculators array
+	const init_calculators = (qty) => {
+		for (let i = 0; i < qty; i++) {
+			calculators[i] = new Calculator;
+		}
+	} 
+
+	init_calculators(qty)
+
+	// Rendering calculators and initializing their event listeners
+	calculators.forEach((calc, index) => {
+		init_render(index);
+		init_listeners(calc, index);
+	})	
+
+	calculators.length > 1 ? calculators.forEach((calc, index) => { 
+		document.getElementsByClassName(`calc-${index}`)[0].classList.add('col-6')
+	}) : '';
+}
+
+
+

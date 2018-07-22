@@ -8,12 +8,16 @@ export const dotTerminator = string => {
 }
 
 export const toggleTheme = checked => {
-	const wrapper = document.getElementsByClassName('wrapper')[0]
+	const wrapper = document.getElementsByClassName('wrapper')[0],		
+		theme_title = document.getElementsByClassName('theme-title')[0];
+		
 	if (checked) {		
 		wrapper.classList.add("theme-dark");
+		theme_title.innerHTML = 'theme: dark'
 	}
 	else {
 		wrapper.classList.remove("theme-dark");	
+		theme_title.innerHTML = 'theme: light';
 	}
 }
 

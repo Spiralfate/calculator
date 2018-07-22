@@ -60,6 +60,15 @@
 				background-color: rgb(70%, 75%, 80%);
 			}
 		}
+		.action-special-unary {
+			margin-bottom: 5px;
+			border-radius: 10px;	
+			transition: .3s;
+			cursor: pointer;
+			&:hover {
+				background-color: rgb(70%, 75%, 80%);
+			}
+		}
 	}
 	.actions-special {
 		.action-special, .action-special-unary {
