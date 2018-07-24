@@ -3,6 +3,7 @@ import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from '
 
 // Number buttons function
 export const numberFunction = (number, calculator, display, index) => {
+    // Checks if any operarion was already been entered
 	if (calculator.action) {			
 		if (calculator.operand)	{		
 			calculator.concatOperand(number);			
@@ -59,16 +60,18 @@ export const clearDisplay = (display) => {
 // Actions buttons function
 export const actionFunction = (action, calculator, display, index) => {
 	
+    // Declines if no initial value presents
 	if (!calculator.accumulator) {
 		return
 	}
-				
+    
+    // Rewrites the last operation if no additional operand was entered afterwards			
 	if  (display.lastChild && display.lastChild.className.match(/operation/)) {
 		display.lastChild.innerHTML = action;
 		calculator.setAction(action);
 		return;
 	}
-	
+	// Proceeds to the operarions array if an action and an operand presents
 	if (calculator.action && calculator.operand) {
 		calculator.addOperation();
 		calculator.clearOperand();

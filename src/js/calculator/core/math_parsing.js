@@ -10,6 +10,7 @@ export const math_types = [
 	{code: 'power', value: 'x^y',		 perform: math_actions.power},
 ]
 
+// Math operations affecting only a single operand
 export const unary_math_types = [	
 	{code: 'factorial', value: 'n!',     perform: math_actions.factorial},
 	{code: 'percentage', value: '%', 	 perform: math_actions.percentage},
@@ -17,10 +18,12 @@ export const unary_math_types = [
 	{code: 'negative', value: '+/-', 	 perform: math_actions.negative}
 ]
 
+// Extracts math operation from an array
 export const extractPerform = (action_string, types) => {
 	return types.filter(el => el.value == action_string)[0].perform
 }
 
+// Performs chosen math operation
 export const mathParser = (result, operation, types, calculator) => {
 	const { action, operand } = operation;
 	const action_perform = 	extractPerform(action, types);

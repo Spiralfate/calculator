@@ -1,4 +1,5 @@
 
+// Eliminates every dot of a string except for the first one
 export const dotTerminator = string => {
 	let count = 0;
 	return string.replace(/\./g, match => {
@@ -7,6 +8,7 @@ export const dotTerminator = string => {
 	})
 }
 
+// Toggles theme classes depending on a tumbler condition
 export const toggleTheme = checked => {
 	const wrapper = document.getElementsByClassName('wrapper')[0],		
 		theme_title = document.getElementsByClassName('theme-title')[0];
@@ -21,6 +23,7 @@ export const toggleTheme = checked => {
 	}
 }
 
+// Helper function for declaring a DOM branch
 export const elt = (type, ...children) => {
 	let node = document.createElement(type);
     for (let child of children) {
@@ -30,6 +33,7 @@ export const elt = (type, ...children) => {
 	return node;
 }
 
+// Helper function for declaring DOM node with a HTML content and a optional number of classes
 export const nodeWithClasses = (node, text, ...classNames) => {
 	if (typeof node == 'string') {
 		node = document.createElement(node);
@@ -41,6 +45,7 @@ export const nodeWithClasses = (node, text, ...classNames) => {
 	return node;
 }
 
+//  Helper function for appending child nodes
 export const renderAction = (action, parentNode, ...classNames) => {	
 	let new_action = nodeWithClasses('button', action.value, ...classNames);
 	parentNode.appendChild(new_action)	

@@ -1,5 +1,7 @@
 
 import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from './math_parsing.js';
+
+// This object contains every math operation that's been released in the current version of Generic Calculator
 export const math_actions = {
 	
 	substraction (accumulator, operand)	{
