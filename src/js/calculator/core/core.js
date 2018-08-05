@@ -7,7 +7,6 @@ const { number_of_calculators } = config;
 // Instantiating the main state
 export const core = () => {	
 	const init = new Init();
-	debugger;
 	init.init_calculators(number_of_calculators);
 	init.calcsRender();
 	init.calcsListen();

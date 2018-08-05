@@ -18,10 +18,11 @@ export const init_render = index => {
 			nodeWithClasses('div', '', 'actions-special', 'col-1', 'hidden'),
 			nodeWithClasses(elt('div',
 				nodeWithClasses(elt('div',
-					nodeWithClasses('button', '<-', 'super-action-pop', 'col-2'),
+					nodeWithClasses('button', '<-', 'super-action-pop', 'col-1'),
 					nodeWithClasses('button', 'ingineer off', 'super-action-toggle', 'col-2'),
-					nodeWithClasses('button', 'clear', 'super-action-clear', 'col-2'),
-					nodeWithClasses('button', '=', 'super-action-equal', 'col-2'),					
+					nodeWithClasses('button', 'clear', 'super-action-clear', 'col-1'),
+					nodeWithClasses('button', 'dice', 'super-action-dice', 'col-1'),
+					nodeWithClasses('button', '=', 'super-action-equal', 'col-1'),					
 				), '', 'row', 'justify-content-center')
 			), '', 'super-actions', 'col-12')
 		), '', 'buttons', 'row'),		

@@ -4,4 +4,8 @@ services:
     build: .
     ports:
     - "8080:8080"
+  web2:
+    build: ./server2/
+    ports:
+    - "8081:8081"
     

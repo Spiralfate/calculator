@@ -1,5 +1,5 @@
 import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from '../../../helpers';
-import { resultButton, clearDisplay, actionFunction, toggleMode, numberFunction } from '../../listeners.js';
+import { resultButton, clearDisplay, actionFunction, toggleMode, numberFunction, diceButton } from '../../listeners.js';
 import { unary_math_types, math_types, extractMathTypeOrPefrorm, mathParser } from '../../math_parsing.js';
 
 // Initializing listeners function
@@ -69,6 +69,11 @@ export const init_listeners = (calculator, index) => {
 	document.getElementsByClassName('super-action-toggle')[index].addEventListener('click', e => {
 		toggleMode(index, e);
 	})	
+	
+	// Dice button listener
+	document.getElementsByClassName('super-action-dice')[index].addEventListener('click', e => {
+		diceButton(calculator, display, index);
+	})		
 	
 	// Remove last character button listener
 	document.getElementsByClassName('super-action-pop')[index].addEventListener('click', e => {

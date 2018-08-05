@@ -50,3 +50,34 @@ export const renderAction = (action, parentNode, ...classNames) => {
 	let new_action = nodeWithClasses('button', action.value, ...classNames);
 	parentNode.appendChild(new_action)	
 }
+
+
+// Request promise
+export const fetchDice = () => {
+    
+    return new Promise((resolve, reject) => {            
+        connect('localhost', '8081').then(server => {
+            console.log('Sending request for dice..')
+            server.send('get dice');
+            server.onmessage = event => {
+                if (String(event.data).match(/[0-9]/)) {
+                    console.log(`Got response with a dice throw of ${event.data}`)                
+                    resolve(event.data)
+                }
+                else reject(event.data)
+            }
+        })
+    })
+}
+const connect = (url, port) => {
+    return new Promise((resolve, reject) => {
+        var server = new WebSocket(`ws://${url}:${port}`);
+        server.onopen = function() {
+            resolve(server);
+        };
+        server.onerror = function(err) {
+            reject(err);
+        };
+    });
+}
+

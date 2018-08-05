@@ -103,6 +103,15 @@
 				background-color: rgb(80%, 75%, 70%);
 			}
 		}
+		.super-action-dice {
+			cursor: pointer;
+			background: white;
+			border-radius: 15px;	
+			margin-right: 5%;
+			&:hover {
+				background-color: rgb(80%, 75%, 70%);
+			}
+		}
 		.super-action-toggle {			
 			cursor: pointer;
 			background: white;

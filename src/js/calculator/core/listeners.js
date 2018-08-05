@@ -1,5 +1,5 @@
 import { Calculator } from '../index.js';  
-import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction } from '../helpers';
+import { toggleTheme, dotTerminator, elt, nodeWithClasses, renderAction, fetchDice } from '../helpers';
 
 // Number buttons function
 export const numberFunction = (number, calculator, display, index) => {
@@ -109,3 +109,12 @@ export const toggleMode = (index, e) => {
 		actions_right.classList.add('col-1');
 	}
 }
+
+// Dice request function 
+
+export const diceButton = (calculator, display, index) => {
+    Promise.resolve(fetchDice()).then(res => {
+        numberFunction(res, calculator, display, index)
+    }, err => alert(err))
+}
+
